@@ -1,0 +1,20 @@
+-- HC13T1_Rishi.hs
+-- Lister tous les fichiers du répertoire courant
+-- Version claire et filtrant seulement les fichiers
+
+import System.Directory (listDirectory, doesFileExist)
+import System.FilePath ((</>))
+import Control.Monad (filterM)  -- <-- IMPORT IMPORTANT
+
+main :: IO ()
+main = do
+    putStrLn "Voici tous les fichiers du répertoire courant :"
+    
+    -- On récupère la liste de tout ce qui se trouve dans le répertoire
+    contenu <- listDirectory "."
+    
+    -- On filtre pour ne garder que les fichiers (pas les dossiers)
+    fichiers <- filterM doesFileExist contenu
+    
+    -- On affiche chaque fichier sur une ligne
+    mapM_ putStrLn fichiers
