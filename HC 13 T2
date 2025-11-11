@@ -1,0 +1,26 @@
+-- HC13T2_VSCode.hs
+-- Filtrer les fichiers du répertoire courant selon une sous-chaîne
+
+import System.Directory (listDirectory, doesFileExist)
+import Control.Monad (filterM)
+import Data.List (isInfixOf)
+
+main :: IO ()
+main = do
+    putStrLn "Entrez la sous-chaîne à rechercher dans les fichiers :"
+    sousChaine <- getLine  -- lecture de la sous-chaîne de l'utilisateur
+
+    -- Récupérer tout le contenu du répertoire courant
+    contenu <- listDirectory "."
+    
+    -- Filtrer pour ne garder que les fichiers (pas les dossiers)
+    fichiers <- filterM doesFileExist contenu
+    
+    -- Filtrer les fichiers contenant la sous-chaîne
+    let fichiersFiltres = filter (isInfixOf sousChaine) fichiers
+    
+    -- Affichage des résultats
+    putStrLn "\nFichiers correspondant à la recherche :"
+    if null fichiersFiltres
+        then putStrLn "Aucun fichier trouvé."
+        else mapM_ putStrLn fichiersFiltres
