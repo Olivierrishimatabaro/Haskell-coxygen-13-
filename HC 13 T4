@@ -1,0 +1,16 @@
+-- HC13T4 : Somme d'une liste non vide avec test
+-- Tout-en-un pour exécuter directement
+
+-- Fonction sumNonEmpty
+sumNonEmpty :: Num a => [a] -> a
+sumNonEmpty [] = error "Erreur : la liste est vide !"
+sumNonEmpty xs = sum xs
+
+-- Fonction principale
+main :: IO ()
+main = do
+    putStrLn "Test avec [1,2,3,4] :"
+    print (sumNonEmpty [1,2,3,4])  -- Affiche 10
+
+    putStrLn "Test avec [] :"
+    print (sumNonEmpty [])          -- Provoque une erreur
