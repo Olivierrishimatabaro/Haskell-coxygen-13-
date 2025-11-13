@@ -1,0 +1,31 @@
+import System.Directory (listDirectory, doesFileExist)
+import Data.List (sort, filter)
+import Control.Monad (filterM)
+
+main :: IO ()
+main = do
+    putStrLn "HC13T3 : Trier et retourner les fichiers filtrés"
+    
+    -- On récupère tous les éléments du répertoire courant
+    contenu <- listDirectory "."
+
+    -- On ne garde que les fichiers (pas les dossiers)
+    fichiers <- filterM doesFileExist contenu
+
+    -- On filtre les fichiers qui ont par exemple l’extension .hs
+    let fichiersFiltres = filter (\f -> ".hs" `elem` wordsWhen (=='.') f) fichiers
+
+    -- On les trie par ordre alphabétique
+    let fichiersTries = sort fichiersFiltres
+
+    putStrLn "\nFichiers Haskell triés :"
+    mapM_ putStrLn fichiersTries
+
+
+-- Petite fonction utilitaire pour séparer une chaîne selon un caractère
+wordsWhen :: (Char -> Bool) -> String -> [String]
+wordsWhen p s =
+    case dropWhile p s of
+        "" -> []
+        s' -> w : wordsWhen p s''
+            where (w, s'') = break p s'
