@@ -1,0 +1,18 @@
+-- Fonction pour convertir la liste filtrée en Map
+filesToMap :: [FilePath] -> Map.Map FilePath Int
+filesToMap xs = Map.fromList [(f, length f) | f <- xs]
+
+-- Fonction principale
+main :: IO ()
+main = do
+    -- Lire tous les fichiers du répertoire courant
+    allFiles <- listDirectory "."
+    
+    -- Filtrer les fichiers .txt
+    let filtered = filterFiles ".txt" allFiles
+    
+    -- Convertir en Map
+    let myMap = filesToMap filtered
+    
+    -- Afficher la Map
+    print myMap
