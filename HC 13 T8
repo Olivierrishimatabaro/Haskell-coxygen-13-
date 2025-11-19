@@ -1,0 +1,14 @@
+module Main where
+
+import qualified OLIVIER
+import qualified KULONDWA
+
+main :: IO ()
+main = do
+    putStrLn (OLIVIER.greet "JAKSON")
+    putStrLn (KULONDWA.greet "MIKA")
+    putStrLn (OLIVIER.greet "JOB")
+    putStrLn (KULONDWA.greet "JONAS")
+    putStrLn (OLIVIER.greet "PABLO")
+    putStrLn (KULONDWA.greet "AKIM")
+    putStrLn (OLIVIER.greet "JC")
