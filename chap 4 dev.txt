@@ -1,0 +1,24 @@
+1.Obtenir la valeur 4 de imbriqué par pattern matching :
+getFour :: [([Int], [Int])] -> Int
+getFour [(_, [_,x]), _] = x
+2. avec plusieurs définitions de fonctions
+removeIf3OrMore :: [a] -> [a]
+removeIf3OrMore (_:_:_:xs) = xs
+removeIf3OrMore xs         = xs
+3. dditionner les 3 éléments d'un tuple
+sumTriple :: (Int, Int, Int) -> Int
+sumTriple (a, b, c) = a + b + c
+4. Tester si une liste est vide
+isEmpty :: [a] -> Bool
+isEmpty [] = True
+isEmpty _  = False
+5. Version personnalisée de tail, qui retourne une liste vide si la liste est vide
+safeTail :: [a] -> [a]
+safeTail []     = []
+safeTail (_:xs) = xs
+6. Ajouter 1 si le nombre est pair, sinon ne rien faire (on retourne Maybe Int)
+
+addIfEven :: Int -> Maybe Int
+addIfEven x = case even x of
+    True  -> Just (x + 1)
+    False -> Nothing
