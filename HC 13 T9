@@ -1,0 +1,13 @@
+-- Définition du module A
+moduleA_greet :: String -> String
+moduleA_greet name = "Hello from ModuleA, " ++ name ++ "!"
+
+-- Définition du module B
+moduleB_greet :: String -> String
+moduleB_greet name = "Hello from ModuleB, " ++ name ++ "!"
+
+-- Fonction principale
+main :: IO ()
+main = do
+    putStrLn (moduleA_greet "Olivier")
+    putStrLn (moduleB_greet "Olivier")
