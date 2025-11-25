@@ -1,0 +1,18 @@
+module Main where
+
+import System.Directory   (listDirectory)
+import Data.List          (sort)
+
+main :: IO ()
+main = do
+    putStrLn "Entrez un dossier à explorer :"
+    folder <- getLine
+
+    -- Récupère la liste des fichiers/dossiers dans le répertoire
+    contents <- listDirectory folder
+
+    -- Trie les éléments par ordre alphabétique
+    let sortedContents = sort contents
+
+    putStrLn "\nRésultats triés :"
+    mapM_ putStrLn sortedContents
